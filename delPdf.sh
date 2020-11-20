@@ -1,7 +1,7 @@
 #!/bin/bash
-DIRSRC=/mnt/c/datas/helarym/vio/Apicrypt
-DIRSCANNER=/mnt/c/datas/helarym/vio/Apicrypt/SCANNER
-DIRDOUBLON=/mnt/c/datas/helarym/vio/Apicrypt/DOUBLON_PDF
+DIRSRC=/mnt/c/Users/vio pro/Desktop/Apicrypt
+DIRSCANNER=$DIRSRC/SCANNER
+DIRDOUBLON=$DIRSRC/DOUBLON_PDF
 echo "Verification des dossiers"
 if [ ! -d "$DIRSCANNER" ]; then
         echo "Creation du dossier scanner";
@@ -15,12 +15,12 @@ echo "Verification terminée --- Let's Go !!"
 read gobble
 echo "Suppression des espaces dans les noms de fichiers"
 OLDWD=$( pwd )
-cd /mnt/c/datas/helarym/vio/Apicrypt/
+cd $DIRSRC
 find ./ -name "* *" -exec rename 's/ /_/g' "{}" \;
 echo "Terminé"
 
 echo "Traitement des doublons Textes qui existent deja en PDF (Fichier extrait automatiquement d'un pdf)"
-LIST="$(grep -r -Ei 'automatiquement extrait depuis un document PDF' /mnt/c/datas/helarym/vio/Apicrypt/*.Txt | cut -c13- |sed -e "s/ /_/g" | sed -e "s/_matches//g")"
+LIST="$(grep -r -Ei 'automatiquement extrait depuis un document PDF' $DIRSRC/*.Txt | cut -c13- |sed -e "s/ /_/g" | sed -e "s/_matches//g")"
 
 for fichier in $LIST
 do
